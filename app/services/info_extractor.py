@@ -46,7 +46,7 @@ def extract_reel_url_and_thumbnail(reel_info):
 def extract_reel_info(exact_url_string):
     response_object_list = []
     info = ""
-    ydl_opts = {"cookiesfrombrowser": ("chrome",)}
+    ydl_opts = {}
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -58,7 +58,8 @@ def extract_reel_info(exact_url_string):
             response_object_list.append(extract_reel_url_and_thumbnail(info))
 
         return response_object_list
-    except Exception:
+    except Exception as exception:
+        print("Exception: ", exception,)
         if "/p/" in exact_url_string:
             return extract_image_info(exact_url_string)
         raise InvalidURLException(status_code=401, detail="Invalid URL", message=INVALID_URL_MESSAGE)

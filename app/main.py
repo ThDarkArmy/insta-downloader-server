@@ -9,7 +9,8 @@ app = FastAPI()
 
 origins = [
     "http://localhost:3000",
-    "http://localhost:8000"
+    "http://localhost:8000",
+    "*"
 ]
 
 app.add_middleware(
@@ -53,5 +54,4 @@ async def handleInvalidURLException(request: Request, exception: InvalidURLExcep
     )
 
 
-# app.include_router(ping.router)
 app.include_router(downloader.router, prefix="/downloader", tags=["downloader"])

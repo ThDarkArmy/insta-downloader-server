@@ -1,6 +1,6 @@
 from fastapi import FastAPI, Request
 from starlette.middleware.cors import CORSMiddleware
-from fastapi.responses import Response, JSONResponse
+from fastapi.responses import Response, JSONResponse, FileResponse
 
 from api import downloader
 from exceptions.ExceptionResponseModel import InvalidURLException
@@ -53,5 +53,8 @@ async def handleInvalidURLException(request: Request, exception: InvalidURLExcep
             "detail" : exception.detail}
     )
 
+@app.get("/.well-known/pki-validation/")
+async def senCertificateFile():
+    return FileResponse("D:\\SUP\\downloader\\download-server\\0EE7F2E2BFAC7E03FFF6B5DFF5F372C3.txt")
 
 app.include_router(downloader.router, prefix="/downloader", tags=["downloader"])

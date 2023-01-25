@@ -46,7 +46,9 @@ def extract_reel_url_and_thumbnail(reel_info):
 def extract_reel_info(exact_url_string):
     response_object_list = []
     info = ""
-    ydl_opts = {}
+    ydl_opts = {
+        'ratelimit': 500000
+    }
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:

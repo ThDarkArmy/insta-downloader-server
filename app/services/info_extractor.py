@@ -86,3 +86,19 @@ def extract_image_info(image_url):
 
 
 
+'''
+server {
+        listen 80;
+        server_name 34.203.189.185;
+        location / {
+                proxy_pass http://127.0.0.1:8000;
+        }
+}
+'''
+
+# sudo vim /etc/nginx/sites-enabled/fastapi_nginx
+# sudo systemctl nginx start
+
+# screen -d -m python3 -m uvicorn main:app
+
+# /.well-known/pki-validation/

@@ -54,7 +54,10 @@ async def handleInvalidURLException(request: Request, exception: InvalidURLExcep
     )
 
 @app.get("/.well-known/pki-validation/")
-async def senCertificateFile():
-    return FileResponse("D:\\SUP\\downloader\\download-server\\0EE7F2E2BFAC7E03FFF6B5DFF5F372C3.txt")
+async def sendCertificateFile():
+    return FileResponse("D:\\SUP\\downloader\\download-server\\6742D81BE2ECAB7906E1B42E0E82B3EF.txt")
 
 app.include_router(downloader.router, prefix="/downloader", tags=["downloader"])
+
+
+# /home/ubuntu/insta-downloader-server/0EE7F2E2BFAC7E03FFF6B5DFF5F372C3.txt

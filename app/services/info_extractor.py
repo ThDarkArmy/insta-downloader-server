@@ -46,9 +46,7 @@ def extract_reel_url_and_thumbnail(reel_info):
 def extract_reel_info(exact_url_string):
     response_object_list = []
     info = ""
-    ydl_opts = {
-        'ratelimit': 500000
-    }
+    ydl_opts = {}
 
     try:
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
@@ -89,7 +87,21 @@ def extract_image_info(image_url):
 '''
 server {
         listen 80;
-        server_name 34.203.189.185;
+        listen 443 ssl;
+        ssl on;
+        ssl_certificate /etc/nginx/certificates/server.crt;
+        ssl_certificate_key /etc/nginx/certificates/server.key;
+        server_name 35.174.200.157;
+        location / {
+                proxy_pass http://127.0.0.1:8000;
+        }
+}
+'''
+
+'''
+server {
+        listen 80;
+        server_name 35.174.200.157;
         location / {
                 proxy_pass http://127.0.0.1:8000;
         }
